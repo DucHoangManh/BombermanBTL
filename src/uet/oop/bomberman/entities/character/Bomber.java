@@ -121,6 +121,7 @@ public class Bomber extends Character {
     public void kill() {
         if (!_alive)
             return;
+        Sound.bomber_dead();
         Game.addBomerLives(-1);
         _alive = false;
     }
@@ -181,7 +182,7 @@ public class Bomber extends Character {
 
     @Override
     public void move(double xa, double ya) {
-        if(canMove(0, ya)) { //separate the moves for the player can slide when is colliding
+        if(canMove(0, ya)) {
             _y += ya;
         }
         if(canMove(xa, 0)) {

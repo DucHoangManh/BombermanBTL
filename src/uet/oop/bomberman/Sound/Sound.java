@@ -47,4 +47,7 @@ public class Sound {
     public static void theme_music(){
         loopSound("PimPoyPocket.wav");
     }
+    public static void bomber_dead(){
+        playSound("PLAYER_OUT.wav");
+    }
 }
