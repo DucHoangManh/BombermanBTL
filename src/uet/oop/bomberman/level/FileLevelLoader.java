@@ -5,6 +5,7 @@ import uet.oop.bomberman.Board;
 import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.LayeredEntity;
 import uet.oop.bomberman.entities.character.Bomber;
+import uet.oop.bomberman.entities.character.enemy.AntiBrick;
 import uet.oop.bomberman.entities.character.enemy.Balloon;
 import uet.oop.bomberman.entities.character.enemy.Oneal;
 import uet.oop.bomberman.entities.tile.Grass;
@@ -144,6 +145,11 @@ public class FileLevelLoader extends LevelLoader {
 					}
 					case '2':{
 						_board.addCharacter(new Oneal(Coordinates.tileToPixel(x),Coordinates.tileToPixel(y)+Game.TILES_SIZE,_board));
+						_board.addEntity(pos,new Grass(x,y,Sprite.grass));
+						break;
+					}
+					case '3':{
+						_board.addCharacter(new AntiBrick(Coordinates.tileToPixel(x),Coordinates.tileToPixel(y)+Game.TILES_SIZE,_board));
 						_board.addEntity(pos,new Grass(x,y,Sprite.grass));
 						break;
 					}
