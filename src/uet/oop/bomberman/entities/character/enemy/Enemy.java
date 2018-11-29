@@ -113,6 +113,7 @@ public abstract class Enemy extends Character {
 	@Override
 	public boolean canMove(double x, double y) {
 		double xl = _x, yl = _y -Game.TILES_SIZE;
+		boolean allowToMove=false;
 		//Chuẩn hóa tọa độ của enemy khi di chuyển
 		switch (_direction){
 			case 0:{//move up
@@ -160,7 +161,7 @@ public abstract class Enemy extends Character {
 			((Bomber) e).kill();
 			return false;
 		}
-		return true;
+		return false;
 	}
 	
 	@Override

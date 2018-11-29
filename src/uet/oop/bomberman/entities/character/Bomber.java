@@ -134,6 +134,13 @@ public class Bomber extends Character {
             if (_bombs.size()==0){
                 if(Game.getBomberLives()>0){
                     _board.currentLevel();
+                    if (Game.getBombRadius()>1){
+                        Game.addBombRadius(-1);
+                    }
+                    if (Game.getBombRate()>1){
+                        Game.addBombRate(-1);
+                    }
+                    Game.addBomberSpeed(-0.2);
                 }
                 else{
                     _board.endGame();

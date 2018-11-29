@@ -5,15 +5,14 @@ import uet.oop.bomberman.Board;
 import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.LayeredEntity;
 import uet.oop.bomberman.entities.character.Bomber;
-import uet.oop.bomberman.entities.character.enemy.AntiBrick;
-import uet.oop.bomberman.entities.character.enemy.Balloon;
-import uet.oop.bomberman.entities.character.enemy.Oneal;
+import uet.oop.bomberman.entities.character.enemy.*;
 import uet.oop.bomberman.entities.tile.Grass;
 import uet.oop.bomberman.entities.tile.Portal;
 import uet.oop.bomberman.entities.tile.Wall;
 import uet.oop.bomberman.entities.tile.destroyable.Brick;
 import uet.oop.bomberman.entities.tile.item.BombItem;
 import uet.oop.bomberman.entities.tile.item.FlameItem;
+import uet.oop.bomberman.entities.tile.item.Live;
 import uet.oop.bomberman.entities.tile.item.SpeedItem;
 import uet.oop.bomberman.exceptions.LoadLevelException;
 import uet.oop.bomberman.graphics.Screen;
@@ -45,6 +44,9 @@ public class FileLevelLoader extends LevelLoader {
 	public void loadLevel(int level) {
 		// TODO: đọc dữ liệu từ tệp cấu hình /levels/Level{level}.txt
 		// TODO: cập nhật các giá trị đọc được vào _width, _height, _level, _map
+		if (level>3){
+			_board.endGame();
+		}
 		String[] symbolMap;
 		try {
 			URL path = FileLevelLoader.class.getResource("/levels/Level" + level + ".txt");
@@ -131,6 +133,14 @@ public class FileLevelLoader extends LevelLoader {
 						));
 						break;
 					}
+					case 'l':{
+						_board.addEntity(pos, new LayeredEntity(x,y,
+								new Grass(x,y,Sprite.grass),
+								new Live(x,y,Sprite.powerup_detonator),
+								new Brick(x,y,Sprite.brick)
+						));
+						break;
+					}
 					case 'x':{
 						_board.addEntity(pos,new LayeredEntity(x,y,
 								new Grass(x,y,Sprite.grass),
@@ -150,6 +160,16 @@ public class FileLevelLoader extends LevelLoader {
 					}
 					case '3':{
 						_board.addCharacter(new AntiBrick(Coordinates.tileToPixel(x),Coordinates.tileToPixel(y)+Game.TILES_SIZE,_board));
+						_board.addEntity(pos,new Grass(x,y,Sprite.grass));
+						break;
+					}
+					case '4':{
+						_board.addCharacter(new Doll(Coordinates.tileToPixel(x),Coordinates.tileToPixel(y)+Game.TILES_SIZE,_board));
+						_board.addEntity(pos,new Grass(x,y,Sprite.grass));
+						break;
+					}
+					case '5':{
+						_board.addCharacter(new Minvo(Coordinates.tileToPixel(x),Coordinates.tileToPixel(y)+Game.TILES_SIZE,_board));
 						_board.addEntity(pos,new Grass(x,y,Sprite.grass));
 						break;
 					}

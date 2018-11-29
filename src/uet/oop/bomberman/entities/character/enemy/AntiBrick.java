@@ -10,7 +10,7 @@ import uet.oop.bomberman.level.Coordinates;
 
 public class AntiBrick extends Enemy{
 	public AntiBrick(int x, int y, Board board) {
-		super(x, y, board, Sprite.kondoria_dead, 0.5, 300); //TODO: dsfdf
+		super(x, y, board, Sprite.kondoria_dead, 0.4, 1000);
 		
 		_sprite = Sprite.kondoria_left1;
 		

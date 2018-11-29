@@ -86,6 +86,9 @@ public class Board implements IRender {
 	}
 	
 	public void nextLevel() {
+		if (_levelLoader.getLevel() ==3){
+			endGame();
+		}
 		loadLevel(_levelLoader.getLevel() + 1);
 	}
 	public void currentLevel(){
