@@ -11,6 +11,7 @@ import uet.oop.bomberman.entities.bomb.FlameSegment;
 import uet.oop.bomberman.entities.character.Bomber;
 import uet.oop.bomberman.entities.character.Character;
 import uet.oop.bomberman.entities.character.enemy.ai.AI;
+import uet.oop.bomberman.entities.tile.Grass;
 import uet.oop.bomberman.graphics.Screen;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.level.Coordinates;
@@ -141,6 +142,14 @@ public abstract class Enemy extends Character {
 		// Kiểm tra xem điểm đến có bị chặn không
 		int desX = Coordinates.pixelToTile(xl) +(int)x;
 		int desY = Coordinates.pixelToTile(yl) +(int)y;
+		for (int i=0;i<desY;i++){
+			for (int j=0;j< desX;j++){
+				Entity ent= _board.getEntity(desX, desY, this);
+				if (ent instanceof Grass){
+					allowToMove=true;
+				}
+			}
+		}
 		Entity destinationEnity = _board.getEntity(desX, desY, this); //entity of the position we want to go
 		return destinationEnity.collide(this);
 	}
